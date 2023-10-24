@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+
+@model BestRestaurants.Models.Cuisine
+
+<h4>Search for a cuisine</h4>
+<p>For example: Mexican, Italian, Japanese, etc.</p>
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Type)
+  @Html.TextBoxFor(model => model.Type)
+  <input type="submit" value="Search"/>
+}
+<p>@Html.ActionLink("Back to index", "Index")</p>
