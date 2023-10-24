@@ -3,6 +3,7 @@ using BestRestaurants.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace BestRestaurants.Controllers
 {
@@ -76,10 +77,20 @@ namespace BestRestaurants.Controllers
       return View();
     }
 
-    // [HttpPost]
-    // public ActionResult Search(Cuisine cuisine)
-    // {
+    [HttpPost]
+    public ActionResult Search(Cuisine searchedCuisine)
+    {
+      Cuisine thisCuisine = _db.Cuisines.FirstOrDefault(cuisine => cuisine.Type == searchedCuisine.Type);
+      if (thisCuisine != null)
+      {
+        return RedirectToAction("Details", new { id = thisCuisine.CuisineId });
+      }
+      else
+      {
+        return RedirectToAction("Search");
+      }
 
-    // }
+    }
+
   }
 }
