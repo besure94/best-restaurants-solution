@@ -38,5 +38,11 @@ namespace BestRestaurants.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    public ActionResult Details(int id)
+    {
+      Restaurant thisRestaurant = _db.Restaurants.Include(restaurant => restaurant.Cuisine).FirstOrDefault(restaurant => restaurant.RestaurantId == id);
+      return View(thisRestaurant);
+    }
   }
 }
